@@ -92,6 +92,7 @@ jobs:
 
           if [ "${{ inputs.vmlinux }}" = "true" ]; then
             make O="${KBUILD_OUTPUT}" INSTALL_PATH="${build}/boot" install
+            cp "${KBUILD_OUTPUT}/vmlinux" "${build}/boot/vmlinux-$(make O="${KBUILD_OUTPUT}" -s kernelrelease)"
           fi
           if [ "${{ inputs.modules }}" = "true" ]; then
             make O="${KBUILD_OUTPUT}" INSTALL_MOD_PATH="${build}" modules_install
